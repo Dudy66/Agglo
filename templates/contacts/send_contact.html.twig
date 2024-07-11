@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %} {% block title %}Contact send{%endblock %} 
+{% block body %}
+
+    <header>
+        {{ include("navbar/navbar.html.twig") }}
+    </header>
+
+<style>
+  body{
+    background-color: white !important;
+    font-family: "Mona Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+</style>
+  </br></br>
+  <p style="text-align: center; margin-top: 5em;" class="text-primary-emphasis">Votre message a bien été envoyé.</p>
+  <p style="text-align: center;" class="text-primary-emphasis">Nous vous recontacterons dans les plus brefs délais.</p>
+  </br>
+
+  <div class="container" style="padding: 3%;">
+        <div class="form-floating mb-2 col-md-10 justify-content-center" style="margin-left: 45%;">
+          <button id="super_btn" class="btn btn-outline-info justify-content-center"><a href="{{ path('app_home') }}" class="text-light" style="text-decoration:none">Accueil</a></button>
+          <br></br>
+      </div>
+  </div>
+    
+  <footer>
+    {{ include("footer.html.twig") }}
+  </footer>
+{% endblock %}

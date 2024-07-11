@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<header>
+    {{ include("navbar/navbar.html.twig") }}
+</header>
+<style>
+  body {
+    background-color: white !important;
+    font-family: "Mona Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+</style>
+
+<div class="title" style="text-align: center; margin-top: 2em;">
+    <h1>Formulaire de contact</h1>
+</div>
+
+<fieldset>
+    <div class="container" style="padding: 2.5em; justify-content-center">
+        <div class="row d-flex justify-content-center">
+        <div class="card text-white bs-gray-700 mb-3" style="max-width: 50rem;">
+            <form method="post">
+
+            <div class="form-floating mb-4 col-md-7" style="margin-left: 4em;" >
+            {{ form_start(form) }}
+            </div>
+
+            <div class="form-floating mb-4 col-md-7 text-primary-emphasis" style="margin-left: 10em;">
+            {{ form_row(form.name) }}
+            </div>
+
+            <div class="form-floating mb-4 col-md-7 text-primary-emphasis" style="margin-left: 10em;">
+            {{ form_row(form.email) }}
+            </div>
+
+            <div class="form-floating mb-4 col-md-7 text-primary-emphasis" style="margin-left: 10em;">
+            {{ form_row(form.object) }}
+            </div>
+
+            <div class="form-floating mb-4 col-md-7 text-primary-emphasis" style="margin-left: 10em;">
+            {{ form_row(form.content) }}
+            </div>
+            
+            <div class="form-floating mb-4 col-md-7 text-primary-emphasis" style="margin-left: 10em;">
+            {{ form_widget(form.date, {'value': 'now'|date('Y-m-d H:i'), 'attr': {'readonly': 'readonly', 'style': 'text-align: center'}}) }}
+            </div>
+
+            <div>
+            {{ form_end(form) }}
+            <div class="form-floating mb-4 col-md-7" style="margin-left: 20em;">
+                <button type="submit" class="btn btn-outline-info"><a style="text-decoration:none; justify-content: center;">{{action|default('Envoyer')}}</a></button>
+            </div>
+
+            </form>
+        </div>
+        </div>
+    </div>
+</fieldset>
+<div class="container" style="padding: 1em;"></div>
+
+<footer>
+    {{ include("footer.html.twig") }}
+</footer>
+{% endblock %}

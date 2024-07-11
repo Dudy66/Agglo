@@ -1,0 +1,99 @@
+{% extends 'base.html.twig' %} {% block stylesheets %}
+<link
+  href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/morph/bootstrap.min.css"
+  rel="stylesheet"
+/>
+{% endblock %} {% block body %}
+
+<header>
+  {{ include("navbar/navbar.html.twig") }}
+</header>
+
+<style>
+  body{
+    background-color: white !important;
+    font-family: "Mona Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+</style>
+
+<form action="{{ path('app_login')}}" method="post">
+  {% if error %}
+  <div class="alert alert-danger">
+    {{ error.messageKey|trans(error.messageData, 'security') }}
+  </div>
+  {% endif %} {% if app.user %}
+  <div class="mb-3 mt-3  text-primary-emphasis" style="margin-left: 2em;">
+    Vous êtes connectées en tant que : {{ app.user.userIdentifier }} 
+    </br>  
+    <a href="{{ path('app_logout') }}">Se déconnecter</a>
+  </div>
+  {% endif %}
+
+  <div class="title" style="text-align: center; margin-top: 2em;">
+    <h1>Connectez-vous</h1>
+  </div>
+
+  <div class="container" style="padding: 2.5em;">
+    <div class="row d-flex justify-content-center">
+      <div class="col col-lg-6">
+        <div class="card text-white bs-gray-700" style="max-width: 60rem; height: 30rem;">
+          <div class="form-floating mb-2 col-md-12 mt-3">
+            <div class="form-floating mb-4 col-md-9 text-primary-emphasis" style="margin-left: 13%;"> 
+              <placeholder for="inputEmail">Email :</placeholder>
+                <br></br>
+                  <input
+                    type="email"
+                    value="{{ last_username }}"
+                    name="email"
+                    id="inputEmail"
+                    class="form-control"
+                    autocomplete="email"
+                    autofocus
+                  />
+            </div>
+          </div>
+        <div class="form-floating mb-4 col-md-9 text-primary-emphasis" style="margin-left: 13%;">
+          <div class="form-floating mb-3 col-md-12">
+            <placeholder for="inputPassword">Mot de passe :</placeholder>
+            <br></br>
+              <input
+                type="password"
+                name="password"
+                id="inputPassword"
+                class="form-control"
+                autocomplete="current-password"
+              />
+            <input
+              type="hidden"
+              name="_csrf_token"
+              value="{{ csrf_token('authenticate') }}"
+            />
+          </div>
+        </div>
+    <div class="form-floating mb-4 col-md-9 text-primary-emphasis" style="margin-left: 35%;">
+      <a href="{{ path('app_forgot_password_request') }}">Mot de passe oublié</a>
+    </div>
+
+    <div class="container" style="padding: 2.5em;">
+      <div class="row d-flex justify-content-center">
+        <div class="form-floating mb-2 col-md-10">
+          <div class="form-floating mb-4 col-md-7" style="margin-left: 30%;">
+            <button class="btn btn-outline-info"><a style="text-decoration:none;">Me connecter</a></button>
+          </div>
+          <br></br>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+ {% for message in app.flashes('notConnected') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+<footer>
+  {{ include("footer.html.twig") }}
+</footer>
+{% endblock %}

@@ -1,0 +1,113 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ressource
+{% endblock %}
+
+{% block body %}
+	<style>
+		body {
+			background-color: white !important;
+			padding: 0 0 60px;
+			font-family: "Mona Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+			position: relative;
+			color: black !important;
+		}
+
+		video {
+			width: 80%;
+		}
+
+		img {
+			width: 80%;
+		}
+
+		.title {
+			color: black !important;
+			font-family: "Mona Sans", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+			padding: 3% 0 2%;
+		}
+
+		.card {
+			font-family: "Mona Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+			background-color: whitesmoke !important;
+			color: black !important;
+			margin: 5px;
+		}
+
+		.btn-close {
+			font-family: "Mona Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+			color: black !important;
+			background-color: white !important;
+			margin-bottom: 10px;
+		}
+
+		.btn-dl {
+			font-family: "Mona Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+			color: black !important;
+			background-color: white !important;
+			margin-bottom: 50px;
+		}
+	</style>
+
+	<header>
+		{{ include("navbar/navbar.html.twig") }}
+	</header>
+	<main>
+		<section>
+			<div class="container text-center">
+				<div class="row">
+					<div class="col-12">
+						<h2 class="title">Ressource</h2>
+					</div>
+					<div class="col-12">
+						<div class="card mb-3">
+							<h3 class="card-header">{{ resource.title }}</h3>
+							<div class="card-body">
+								<div class="row">
+									<div class="col-11">
+									</div>
+									<div class="col-1">
+										<a href="/resources">
+											<button type="button" class="btn btn-close btn-primary btn-sm"></button>
+										</a>
+									</div>
+								{% if resource.video %}
+									<div class="col-12">
+										<video controls>
+											<source src="{{ resource.video }}" type="video/mp4">
+										</video>
+									</div>
+									<div class="col-12 mt-3">
+								{% elseif resource.image %}
+									<div class="col-md-6">
+										<img class="d-block user-select-none" src="/images/ressources/{{ resource.image }}" alt="Ressource éducative">
+									</div>
+									<div class="col-md-6">
+								{% else %}
+									    <div class="col-12">
+								{% endif %}
+										    <p class="card-text description">
+											    {{ resource.description | raw}}
+										    </p>
+									    </div>
+										{# {% if resource.otherContent %}
+											<div class="col-8">
+											</div>
+											<div class="col-4">
+												<form action="{{ path('download_resources', {'id': resource.id}) }}" method="post">
+    												<button type="submit" class="btn-dl btn-secondary btn-sm col-4">Télécharger</button>
+												</form>
+											</div>
+                                    	{% endif %} #}
+								    </div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+	<footer>
+		{{ include("footer.html.twig") }}
+	</footer>
+{% endblock %}

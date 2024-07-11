@@ -1,0 +1,127 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ressources
+{% endblock %}
+
+{% block body %}
+	<style>
+        body {
+		    background-color: white !important;
+		    padding: 0 0 60px;
+		    font-family: "Mona Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+		    position: relative;
+		    color: black !important;
+		}
+
+        select {
+            font-family: "Mona Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+			background-color: whitesmoke !important;
+			color: black !important;
+        }
+
+        input {
+            font-family: "Mona Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+			background-color: whitesmoke !important;
+			color: black !important;
+        }
+
+		img {
+            margin: auto;
+            width: 80%;
+        }
+
+        .title{
+            color: black !important;
+            font-family: "Mona Sans", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+			padding: 3% 0 2%;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-gap: 20px;
+        }
+
+        .card{
+			font-family: "Mona Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+			background-color: whitesmoke !important;
+			color: black !important;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+        }
+
+        .description {
+            margin: 20px;
+        }
+
+        .btn-card {
+            font-family: "Mona Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            color: black !important;
+            background-color: white !important;
+            margin: 5px;
+        }
+
+        .btn-filter {
+            font-family: "Mona Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            color: black !important;
+            background-color: white !important;
+            margin: 10px 0px 10px;
+        }
+
+        .btn-research {
+            font-family: "Mona Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            color: black !important;
+            background-color: white !important;
+            margin: 5px;
+        }
+
+        .row.justify-content-center {
+            text-align: center;
+        }
+
+        .row.justify-content-center .col-md-4 {
+            margin-bottom: 20px;
+        }
+        
+	</style>
+
+	<header>
+		{{ include("navbar/navbar.html.twig") }}
+	</header>
+	<main>
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="title">Ressources Educatives</h2>
+                </div>
+                {# FILTER SECTION #}
+                <div class="col-md-2">
+                    {% if activityAreas is defined %}
+                        {{ include("resources/resources_filter.html.twig")}}
+                    {% endif %}
+                </div>
+                {# RESEARCH BAR SECTION #}
+                <div class="col-md-10">
+                    {{ include("resources/research_bar.html.twig")}}
+                </div>
+                {# RESOURCES CARDS SECTION #}
+                <div class="col-md-12">
+                    <div class="card-grid">
+                        {% for resources in pagination %}
+                            <div class="card">
+                                {{ include("resources/resources_card.html.twig") }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div style="padding-top: 2%">
+                        {{ knp_pagination_render(pagination)}}
+                    </div>
+                </div>
+            </div>
+        </div>
+	</main>
+	<footer>
+		{{ include("footer.html.twig") }}
+	</footer>
+{% endblock %}

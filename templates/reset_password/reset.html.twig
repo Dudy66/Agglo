@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %} 
+
+{% block title %}Réinitialiser votre mot de passe{% endblock %} 
+
+{% block body %}
+
+<header>
+  {{ include("navbar/navbar.html.twig") }}
+</header>
+
+<style>
+  body {
+    background-color: white !important;
+    font-family: "Mona Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+</style>
+
+<div class="container" style="padding: 2.5em;">
+  <div class="row d-flex justify-content-center">
+    <div class="col col-lg-6">
+      <h1 class="text-center">Mise à jour de votre mot de passe</h1>
+      <br>
+      <div class="card text-primary-emphasis bs-gray-700 mx-auto" style="max-width: 60rem;">
+        <div class="row d-flex justify-content-between">
+          <div class="form-floating mb-2 col-md-12 mt-3">
+            <div class="form-floating mb-4 col-md-9 text-primary-emphasis" style="margin-left: 13%; margin-top: 7%;">
+              {{ form_start(resetForm) }}
+              <label for="password" class="form-label">Nouveau mot de passe</label>
+              {{ form_widget(resetForm.plainPassword.first, {'label': 'Nouveau mot de passe'}) }}
+            </div>
+          </div>
+        </div>
+        <div class="row d-flex justify-content-between">
+          <div class="form-floating mb-2 col-md-12 mt-3">
+            <label for="password" class="form-label" style="margin-left: 11%;">Répétez le mot de passe</label>
+              <div class="form-floating mb-4 col-md-9 text-primary-emphasis" style="margin-left: 13%; margin-top: 7%;">
+              {{ form_widget(resetForm.plainPassword.second, {'label': 'Répétez le mot de passe'}) }}
+            </div>
+         
+        
+        <div class="container" style="padding: 2.5em;  margin-top: 5%;">
+            <div class="row d-flex justify-content-center">
+              <div class="form-floating mb-2 col-md-10 text-center">
+                <button type="submit" class="btn btn-outline-info mx-auto">Envoyer</button>
+              {{ form_end(resetForm) }}
+              <footer>
+                {{ include("footer.html.twig") }}
+              </footer>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

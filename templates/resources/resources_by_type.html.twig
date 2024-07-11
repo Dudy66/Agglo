@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ressources filtrées{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h2>Ressources filtrées</h2>
+        
+        <div class="resources">
+            {% for resource in resources %}
+                <div class="resource">
+                    {% for resources in resources %}
+                            {{ include("resources/resources_card.html.twig") }}
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

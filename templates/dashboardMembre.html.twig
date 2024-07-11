@@ -1,0 +1,96 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<style>
+.text{
+    font-size: 25px;
+    color:black;
+    text-align:center;
+}
+
+.info{
+      font-size: 25px;
+}
+
+.logout-link{
+    text-align:right;
+}
+
+</style>
+
+<header>
+    {{ include("navbar/navbar.html.twig") }}
+</header>
+<br></br>
+
+<h1 class="text">Bienvenue {{ app.user.firstName }}</h1>
+{% for flashMessage in app.flashes('success') %}
+    <div class="alert alert-success" role="alert">
+        {{ flashMessage }}
+    </div>
+{% endfor %}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div>
+                <h1 class="info">Mes Informations : </h1>    
+            </div>
+            </div>
+            <div>    
+                {{ form_start(form, {'attr': {'method': 'POST'}}) }}
+                {{ form_row(form.lastName, {'attr': {'class': 'form-control mt-1', 'placeholder': 'Nom'}}) }}
+                {{ form_row(form.firstName, {'attr': {'class': 'form-control mt-1', 'placeholder': 'Prénom'}}) }}
+                {{ form_row(form.email, {'attr': {'class': 'form-control mt-1', 'placeholder': 'Email'}}) }}
+                {{ form_row(form.address, {'attr': {'class': 'form-control mt-1', 'placeholder': 'Adresse'}}) }}
+                {{ form_row(form.birthdate, {'attr': {'class': 'form-control mt-1'}}) }}
+            </div>
+            <div class="d-flex justify-content-between mt-4"> 
+                <button type="submit" class="btn btn-outline-info">Mettre à jour</button>
+                <div class="logout-link">
+                    <a href="{{ path('app_logout') }}" class="btn btn-outline-danger">Déconnexion</a>
+                </div>
+            </div>
+            </br>
+                {{ form_end(form) }}&nbsp;&nbsp;&nbsp;
+                {% if app.user.events is empty %}
+                    <p class="info">Vous n'êtes inscrit à aucun événement pour le moment.</p>
+                {% else %}
+                    <h2 class="info">Évènements auxquels vous êtes inscrit :</h2>&nbsp;
+                    <div class="card bg-light mb-3" style="max-width: 100%;">
+                    </br>
+                    <ul style="list-style-type: none;">
+                        {% for event in app.user.events %}&nbsp;
+                            <li style="font-weight: bold;">{{ event.title }} &nbsp;&nbsp;
+                                <a href="{{ path('events_card', {id: event.id}) }}" class="text-decoration-none" style="font-weight: normal;">Afficher</a>&nbsp;
+                                <a href="" class="text-decoration-none" style="font-weight: normal;">Se désinscrire</a>&nbsp;
+                            </li>&nbsp;
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
+    
+{# {% if app.user.events is empty %}
+    <p class="info">Vous n'êtes inscrit à aucun événement pour le moment.</p>
+{% else %}
+
+    <h2 class="info">Événements auxquels vous êtes inscrit :</h2>&nbsp;
+    <ul>
+        {% for event in app.user.events %}
+            <li>{{ event.title }} &nbsp;&nbsp;
+                <a href="{{ path('events_card', {id: event.id}) }}" class="">Afficher</a>&nbsp;
+                <a href="{{ path('app_event_unregister', {id: event.id}) }}" class="">Se désinscrire</a>&nbsp;
+
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %} #}
+
+
+              
+</div>
+ </div>
+    </div>
+</div>
+{% endblock %}

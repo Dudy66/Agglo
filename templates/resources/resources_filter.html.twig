@@ -1,0 +1,9 @@
+<form action="{{ path('resource_filtered') }}" method="get">
+	<select name="activityArea" class="form-control">
+		<option value="">Sélectionnez un secteur d'activité</option>
+		{% for activityArea in activityAreas %}
+			<option value="{{ activityArea.activityAreaName }}">{{ activityArea.activityAreaName }}</option>
+		{% endfor %}
+	</select>
+	<button activityArea="submit" class="btn btn-filter btn-primary btn-sm">Filtrer</button>
+</form>

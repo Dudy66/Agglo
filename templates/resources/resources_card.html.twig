@@ -1,0 +1,18 @@
+<h3 class="card-header">{{ resources.title }}</h3>
+<div class="card-body">
+	{% if resources.image %}
+		<img class="d-block user-select-none" src="/images/ressources/{{ resources.image }}" alt="{{ resources.type}}">
+	{% endif %}
+	<p class="card-text description" id="description{{ loop.index }}">
+		{% if resources.description|length > 69 %}
+			{{ resources.description|raw|slice(0, 69) ~ '...' }}
+		{% else %}
+			{{ resources.description|raw }}
+		{% endif %}
+	</p>
+<h6 class="card-header">{{ resources.activityArea }}</h6>
+
+	<a href="/single-resource/{{ resources.id }}">
+		<button type="button" class="btn btn-card btn-primary btn-sm">Consulter</button>
+	</a>
+</div>

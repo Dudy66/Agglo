@@ -1,0 +1,102 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+  {{ include("navbar/navbar.html.twig") }}
+</header>
+
+<style>
+body {
+    background-color: white !important;
+    font-family: "Mona Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+.flash-error {
+    color: red;
+}
+</style>
+
+<div class="title" style="text-align: center; margin-top: 2em;">
+  <h1>Enregistrez-vous</h1>
+</div>
+
+<div class="container" style="padding: 2.5em;">
+  <div class="card text-white bs-gray-700">
+  <div class="row">
+    <div class="col-lg-6">
+      <div style="max-width: 60rem; height: 32rem;">
+        <form method="post">
+          {{ form_errors(registrationForm) }}
+          {{ form_start(registrationForm) }}
+
+          <div class="row" style="max-width: 60rem; height: 30rem;">
+            <div class="col-md-12 mt-3">
+              <div class="form-floating mb-4 col-md-9 text-primary-emphasis" style="margin-left: 21%;">
+                {{ form_row(registrationForm.firstname) }}
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-floating mb-4 col-md-9 text-primary-emphasis" style="margin-left: 21%;">
+                {{ form_row(registrationForm.lastname) }}
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-floating mb-4 col-md-9 text-primary-emphasis" style="margin-left: 21%;">
+                {{ form_row(registrationForm.email) }}
+                {% for message in app.flashes('error') %}
+                <div class="alert-danger">
+                  {{ message }}
+                </div>
+              {% endfor %}
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-floating mb-4 col-md-9 text-primary-emphasis" style="margin-left: 21%;">
+                {{ form_row(registrationForm.plainPassword, { label: "Mot de passe : " }) }}
+              </div>
+            </div>
+          </div>
+      
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div style="max-width: 60rem; height: 30rem;">
+     
+          
+            <div class="col-md-12 mt-3" style="margin-bottom: 2.3em;">
+              <div class="form-floating mb-4 col-md-9 text-primary-emphasis" style="margin-left: 5%;">
+                {{ form_row(registrationForm.address) }}
+              </div>
+            </div>
+            <div class="col-md-12" style="margin-bottom: 2.3em;">
+              <div class="form-floating mb-4 col-md-9 text-primary-emphasis" style="margin-left: 5%;">
+                {{ form_row(registrationForm.birthdate) }}
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-floating mb-2 col-md-9 text-primary-emphasis" style="margin-left: 5%;">
+                {{ form_row(registrationForm.photo) }}
+              </div>
+            </div>
+            <div class="col-md-12 text-primary-emphasis" style="margin-left: 15%;">
+              <div class="form-check form-switch">
+                <label for="flexSwitchCheckChecked">{{ form_row(registrationForm.agreeTerms) }}</label>
+              </div>
+              <br />
+              <div class="form-floating mb-4 col-md-7" style="margin-left: 20%;">
+                <button type="submit" class="btn btn-outline-info" style="text-decoration:none;">{{ action|default('Envoyer') }}</button>
+               {{ form_end(registrationForm) }}
+            </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+
+</div>
+
+<footer>
+  {{ include("footer.html.twig") }}
+</footer>
+
+{% endblock %}

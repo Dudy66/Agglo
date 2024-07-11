@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Users{% endblock %}
+
+{% block body %}
+    <h1>Users</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ user.id }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ user.email }}</td>
+            </tr>
+            <tr>
+                <th>Roles</th>
+                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+            </tr>
+            <tr>
+                <th>Password</th>
+                <td>{{ user.password }}</td>
+            </tr>
+            <tr>
+                <th>LastName</th>
+                <td>{{ user.lastName }}</td>
+            </tr>
+            <tr>
+                <th>FirstName</th>
+                <td>{{ user.firstName }}</td>
+            </tr>
+            <tr>
+                <th>Photo</th>
+                <td>{{ user.photo }}</td>
+            </tr>
+            <tr>
+                <th>Birthdate</th>
+                <td>{{ user.birthdate ? user.birthdate|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td>{{ user.address }}</td>
+            </tr>
+            <tr>
+                <th>Goal</th>
+                <td>{{ user.goal }}</td>
+            </tr>
+            <tr>
+                <th>SchoolCareer</th>
+                <td>{{ user.schoolCareer }}</td>
+            </tr>
+            <tr>
+                <th>ProfessionnalCareer</th>
+                <td>{{ user.professionnalCareer }}</td>
+            </tr>
+            <tr>
+                <th>Instagram</th>
+                <td>{{ user.instagram }}</td>
+            </tr>
+            <tr>
+                <th>Facebook</th>
+                <td>{{ user.facebook }}</td>
+            </tr>
+            <tr>
+                <th>LinkedIn</th>
+                <td>{{ user.linkedIn }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_users_index') }}">back to list</a>
+
+    <a href="{{ path('app_users_edit', {'id': user.id}) }}">edit</a>
+
+    {{ include('users/_delete_form.html.twig') }}
+{% endblock %}
